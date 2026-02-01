@@ -60,7 +60,7 @@ app.patch('/users/:id',async(req,res) =>{
     // # when you want to more option to update
     const options= {} 
     const result= await myCollection.updateOne(query,update,options)
-    res.send(resultz)
+    res.send(result)
 })
 // 3. delete the data from database 
 app.delete('/users/:id', async(req,res) => {
