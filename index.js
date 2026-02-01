@@ -46,7 +46,22 @@ app.get('/users/:id',async(req,res) => {
     res.send(result)
 
 })
-
+// 5. Update user Data
+app.patch('/users/:id',async(req,res) =>{
+    const id=req.params.id;
+    const UpdateUser=req.body;
+    const query ={ _id:new ObjectId(id)}
+    const update ={
+        $set :{
+            name:UpdateUser.name,
+            email:UpdateUser.email,
+        }
+    }
+    // # when you want to more option to update
+    const options= {} 
+    const result= await myCollection.updateOne(query,update,options)
+    res.send(resultz)
+})
 // 3. delete the data from database 
 app.delete('/users/:id', async(req,res) => {
     const id=req.params.id;
@@ -72,6 +87,6 @@ app.listen(port, () =>{
     }finally{
         // await client.close();
     }
-}
+}  
 run().catch(console.dir);
 
